@@ -36,6 +36,7 @@ const SetTimer = props => {
           variant="outlined"
           label="Minuutit"
           name="minutes"
+          type="number"
           value={props.minutes}
           onChange={e => props.setMinutes(e.target.value)}
         />
@@ -44,11 +45,12 @@ const SetTimer = props => {
           variant="outlined"
           label="Sekuntit"
           name="seconds"
+          type="number"
           value={props.seconds}
           onChange={e => props.setSeconds(e.target.value)}
         />
         <p>
-          <Button type="submit">ASETA</Button>
+          <Button type="submit" variant="contained" color="secondary" size="large" disableElevation>ASETA</Button>
         </p>
       </form>
     </CardContent>
