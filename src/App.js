@@ -47,9 +47,21 @@ function useInterval(callback, delay) {
 const App = () => {
   const [minutes, setMinutes] = useState(0);
   const [seconds, setSeconds] = useState(0);
+  const [originalMinutes, setOriginalMinutes] = useState(0);
+  const [originalSeconds, setOriginalSeconds] = useState(0);
   const [timeIsSet, setTimeIsSet] = useState(false);
   const [isRunning, setIsRunning] = useState(false);
   const [timeIsUp, setTimeIsUp] = useState(false);
+
+  const handleMinutes = e => {
+    setOriginalMinutes(e.target.value);
+    setMinutes(e.target.value);
+  };
+
+  const handleSeconds = e => {
+    setOriginalSeconds(e.target.value);
+    setSeconds(e.target.value);
+  };
 
   useInterval(
     () => {
@@ -91,10 +103,23 @@ const App = () => {
                 timeIsSet={timeIsSet}
                 setTimeIsSet={setTimeIsSet}
                 setIsRunning={setIsRunning}
+                handleMinutes={handleMinutes}
+                handleSeconds={handleSeconds}
               />
             )}
-            {timeIsSet && <Timer minutes={minutes} seconds={seconds} />}
-            {timeIsUp && <Generator />}
+            {timeIsSet && !timeIsUp && (
+              <Timer minutes={minutes} seconds={seconds} />
+            )}
+            {timeIsUp && (
+              <Generator
+                originalMinutes={originalMinutes}
+                originalSeconds={originalSeconds}
+                setMinutes={setMinutes}
+                setSeconds={setSeconds}
+                setTimeIsUp={setTimeIsUp}
+                setIsRunning={setIsRunning}
+              />
+            )}
           </Card>
         </Grid>
       </Grid>

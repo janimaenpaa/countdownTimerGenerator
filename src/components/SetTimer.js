@@ -38,7 +38,7 @@ const SetTimer = props => {
           name="minutes"
           type="number"
           value={props.minutes}
-          onChange={e => props.setMinutes(e.target.value)}
+          onChange={e => props.handleMinutes(e)}
         />
         <br /> <br />
         <TextField
@@ -47,7 +47,7 @@ const SetTimer = props => {
           name="seconds"
           type="number"
           value={props.seconds}
-          onChange={e => props.setSeconds(e.target.value)}
+          onChange={e => props.handleSeconds(e)}
         />
         <p>
           <Button type="submit" variant="contained" color="secondary" size="large" disableElevation>ASETA</Button>

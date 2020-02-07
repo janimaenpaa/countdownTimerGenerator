@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 
 import { makeStyles } from "@material-ui/core/styles";
 import CircularProgress from "@material-ui/core/CircularProgress";
-import { CardContent, Typography } from "@material-ui/core";
+import { CardContent, Typography, Button } from "@material-ui/core";
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -19,7 +19,7 @@ const randomNumber = () => {
   return number;
 };
 
-const Generator = () => {
+const Generator = props => {
   const [isLoading, setIsLoading] = useState(true);
   const classes = useStyles();
 
@@ -29,6 +29,13 @@ const Generator = () => {
     }, 5000);
     return () => clearTimeout(timer);
   });
+
+  const handleButton = () => {
+    props.setMinutes(props.originalMinutes);
+    props.setSeconds(props.originalSeconds);
+    props.setTimeIsUp(false);
+    props.setIsRunning(true);
+  };
 
   return (
     <CardContent>
@@ -42,6 +49,17 @@ const Generator = () => {
         <React.Fragment>
           <Typography variant="h3">Pöytäryhmä on numero</Typography>
           <Typography variant="h3">{randomNumber()}</Typography>
+          <br />
+          <Button
+            type="submit"
+            variant="contained"
+            color="secondary"
+            size="large"
+            onClick={handleButton}
+            disableElevation
+          >
+            RESTART
+          </Button>
         </React.Fragment>
       )}
     </CardContent>
