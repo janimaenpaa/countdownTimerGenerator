@@ -1,23 +1,11 @@
 import React from "react";
 
 import TextField from "@material-ui/core/TextField";
-import { makeStyles } from "@material-ui/core/styles";
 import CardContent from "@material-ui/core/CardContent";
 import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
-const useStyles = makeStyles({
-  title: {
-    fontSize: 14
-  },
-  pos: {
-    marginTop: 12,
-    marginBottom: 12
-  }
-});
 
 const SetTimer = props => {
-  const classes = useStyles();
-
   const handleSubmit = event => {
     event.preventDefault();
     console.log("Aika:", props.minutes + ":" + props.seconds);
@@ -50,7 +38,15 @@ const SetTimer = props => {
           onChange={e => props.handleSeconds(e)}
         />
         <p>
-          <Button type="submit" variant="contained" color="secondary" size="large" disableElevation>ASETA</Button>
+          <Button
+            type="submit"
+            variant="contained"
+            color="secondary"
+            size="large"
+            disableElevation
+          >
+            ASETA
+          </Button>
         </p>
       </form>
     </CardContent>

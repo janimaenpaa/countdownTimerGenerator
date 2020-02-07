@@ -47,7 +47,7 @@ const Generator = props => {
         </div>
       ) : (
         <React.Fragment>
-          <Typography variant="h3">Pöytäryhmä on numero</Typography>
+          <Typography variant="h3">Pöytäryhmä</Typography>
           <Typography variant="h3">{randomNumber()}</Typography>
           <br />
           <Button
