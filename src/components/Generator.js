@@ -17,6 +17,11 @@ const useStyles = makeStyles(theme => ({
     "& > * + *": {
       marginLeft: theme.spacing(2)
     }
+  },
+  avatar: {
+    justifyContent: "center",
+    alignItems: "center",
+    alignContent: "center"
   }
 }));
 
@@ -38,14 +43,16 @@ const Generator = ({
   useEffect(() => {
     const timer = setTimeout(() => {
       setIsLoading(false);
-      generateRandomTableGroup()
-    }, 5000);
+    }, 1000);
     return () => clearTimeout(timer);
   });
 
-  const generateRandomTableGroup = () => {
-    let number = Math.floor(Math.random() * 6) + 1;
-    console.log(number)
+  useEffect(() => {
+    generateNumber();
+  }, []);
+
+  const generateNumber = () => {
+    const number = Math.floor(Math.random() * 6) + 1;
     setTableGroup(number);
   };
 
@@ -72,10 +79,17 @@ const Generator = ({
       ) : (
         <div>
           <Typography variant="h3">PÖYTÄRYHMÄ</Typography>
-          <Typography variant="h2">{tableGroup}</Typography>
+          <Typography variant="h3">{tableGroup}</Typography>
           <p>
             {!punishmentGenerated && (
-              <Button onClick={handlePunishmentGeneration}>
+              <Button
+                type="submit"
+                variant="contained"
+                color="secondary"
+                size="large"
+                onClick={handlePunishmentGeneration}
+                disableElevation
+              >
                 ARVO RANGAISTUS
               </Button>
             )}

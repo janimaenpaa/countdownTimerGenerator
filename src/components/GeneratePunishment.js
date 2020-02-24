@@ -19,7 +19,7 @@ const GeneratePunishment = ({ handleButton }) => {
   useEffect(() => {
     const timer = setTimeout(() => {
       setShowGeneratePunishment(true);
-    }, 5000);
+    }, 1000);
     return () => clearTimeout(timer);
   });
 
@@ -30,11 +30,14 @@ const GeneratePunishment = ({ handleButton }) => {
 
   return (
     <React.Fragment>
-      <Divider variant="middle" />
+      <Divider variant="fullWidth" style={{ marginBottom: 20 }} />
       {showGeneratePunishment ? (
         <div>
-          <Typography variant="h3">{generatePunishment()}</Typography>
+          <Typography variant="h3">RANGAISTUS</Typography>
+          <br />
+            <Typography variant="h3">{generatePunishment()}</Typography>
           <p>
+            <br />
             <Button
               type="submit"
               variant="contained"
