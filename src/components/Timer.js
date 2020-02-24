@@ -3,6 +3,8 @@ import React from "react";
 import { CardContent } from "@material-ui/core";
 import Typography from "@material-ui/core/Typography";
 
+import "./Timer.css";
+
 const Timer = props => {
   let minute = props.minutes;
   let second = props.seconds;
@@ -16,9 +18,17 @@ const Timer = props => {
 
   let time = minute + ":" + second;
   return (
-    <CardContent>
-      <Typography variant="h2">{time}</Typography>
-    </CardContent>
+    <div
+      style={{
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center"
+      }}
+    >
+      <CardContent>
+        <Typography variant="h2">{time}</Typography>
+      </CardContent>
+    </div>
   );
 };
 

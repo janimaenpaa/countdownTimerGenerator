@@ -9,11 +9,19 @@ import { makeStyles } from "@material-ui/core/styles";
 import Card from "@material-ui/core/Card";
 import Grid from "@material-ui/core/Grid";
 
+import headerImage from "./img/header.png";
+
 const useStyles = makeStyles({
   root: {
-    minWidth: 600,
+    minWidth: 300,
+    width: 800,
     minHeight: 200,
-    background: "ffffff"
+    maxWidth: "100%",
+    padding: 20,
+    background: "ffffff",
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center"
   },
   title: {
     fontSize: 14
@@ -82,48 +90,52 @@ const App = () => {
 
   const classes = useStyles();
   return (
-    <div className="App">
-      <h1>Randomsitsit</h1>
-      <Grid
-        container
-        spacing={0}
-        direction="column"
-        alignItems="center"
-        justify="center"
-        style={{ minHeight: "40vh" }}
-      >
-        <Grid item xs={12}>
-          <Card className={classes.root}>
-            {!timeIsSet && (
-              <SetTimer
-                minutes={minutes}
-                setMinutes={setMinutes}
-                seconds={seconds}
-                setSeconds={setSeconds}
-                timeIsSet={timeIsSet}
-                setTimeIsSet={setTimeIsSet}
-                setIsRunning={setIsRunning}
-                handleMinutes={handleMinutes}
-                handleSeconds={handleSeconds}
-              />
-            )}
-            {timeIsSet && !timeIsUp && (
-              <Timer minutes={minutes} seconds={seconds} />
-            )}
-            {timeIsUp && (
-              <Generator
-                originalMinutes={originalMinutes}
-                originalSeconds={originalSeconds}
-                setMinutes={setMinutes}
-                setSeconds={setSeconds}
-                setTimeIsUp={setTimeIsUp}
-                setIsRunning={setIsRunning}
-              />
-            )}
-          </Card>
+    <React.Fragment>
+      <div className="App">
+        <Grid
+          container
+          spacing={0}
+          direction="column"
+          alignItems="center"
+          justify="center"
+          style={{ minHeight: "40vh" }}
+        >
+          <Grid item xs={12}>
+            <img src={headerImage} alt="Randomsitsit" style={{padding: "20px"}}/>
+          </Grid>
+          <Grid item xs={12}>
+            <Card className={classes.root}>
+              {!timeIsSet && (
+                <SetTimer
+                  minutes={minutes}
+                  setMinutes={setMinutes}
+                  seconds={seconds}
+                  setSeconds={setSeconds}
+                  timeIsSet={timeIsSet}
+                  setTimeIsSet={setTimeIsSet}
+                  setIsRunning={setIsRunning}
+                  handleMinutes={handleMinutes}
+                  handleSeconds={handleSeconds}
+                />
+              )}
+              {timeIsSet && !timeIsUp && (
+                <Timer minutes={minutes} seconds={seconds} />
+              )}
+              {timeIsUp && (
+                <Generator
+                  originalMinutes={originalMinutes}
+                  originalSeconds={originalSeconds}
+                  setMinutes={setMinutes}
+                  setSeconds={setSeconds}
+                  setTimeIsUp={setTimeIsUp}
+                  setIsRunning={setIsRunning}
+                />
+              )}
+            </Card>
+          </Grid>
         </Grid>
-      </Grid>
-    </div>
+      </div>
+    </React.Fragment>
   );
 };
 
