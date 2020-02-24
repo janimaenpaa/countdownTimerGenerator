@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from "react";
 
+import GeneratePunishment from "./GeneratePunishment";
+
 import { makeStyles } from "@material-ui/core/styles";
 import CircularProgress from "@material-ui/core/CircularProgress";
 import { CardContent, Typography, Button } from "@material-ui/core";
@@ -14,13 +16,16 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-const randomNumber = () => {
-  let number = Math.floor(Math.random() * 6) + 1;
-  return number;
-};
-
-const Generator = props => {
+const Generator = ({
+  originalMinutes,
+  originalSeconds,
+  setMinutes,
+  setSeconds,
+  setTimeIsUp,
+  setIsRunning
+}) => {
   const [isLoading, setIsLoading] = useState(true);
+
   const classes = useStyles();
 
   useEffect(() => {
@@ -31,10 +36,15 @@ const Generator = props => {
   });
 
   const handleButton = () => {
-    props.setMinutes(props.originalMinutes);
-    props.setSeconds(props.originalSeconds);
-    props.setTimeIsUp(false);
-    props.setIsRunning(true);
+    setMinutes(originalMinutes);
+    setSeconds(originalSeconds);
+    setTimeIsUp(false);
+    setIsRunning(true);
+  };
+
+  const generateRandomTableGroup = () => {
+    let number = Math.floor(Math.random() * 6) + 1;
+    return number;
   };
 
   return (
@@ -48,18 +58,11 @@ const Generator = props => {
       ) : (
         <React.Fragment>
           <Typography variant="h3">Pöytäryhmä</Typography>
-          <Typography variant="h3">{randomNumber()}</Typography>
-          <br />
-          <Button
-            type="submit"
-            variant="contained"
-            color="secondary"
-            size="large"
-            onClick={handleButton}
-            disableElevation
-          >
-            RESTART
-          </Button>
+          <Typography variant="h3">{generateRandomTableGroup()}</Typography>
+          <p>
+            <GeneratePunishment handleButton={handleButton}/>
+          </p>
+          
         </React.Fragment>
       )}
     </CardContent>
