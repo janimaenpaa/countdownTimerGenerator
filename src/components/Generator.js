@@ -4,7 +4,7 @@ import GeneratePunishment from "./GeneratePunishment";
 
 import { makeStyles } from "@material-ui/core/styles";
 import CircularProgress from "@material-ui/core/CircularProgress";
-import { CardContent, Typography, Button } from "@material-ui/core";
+import { CardContent, Typography } from "@material-ui/core";
 
 const useStyles = makeStyles(theme => ({
   root: {
