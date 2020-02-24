@@ -14,24 +14,24 @@ const punishments = [
 ];
 
 const GeneratePunishment = ({ handleButton }) => {
-  const [tableGroupIsGenerated, setTableGroupIsGenerated] = useState(false);
+  const [showGeneratePunishment, setShowGeneratePunishment] = useState(false);
 
   useEffect(() => {
     const timer = setTimeout(() => {
-      setTableGroupIsGenerated(true);
+      setShowGeneratePunishment(true);
     }, 5000);
     return () => clearTimeout(timer);
   });
 
   const generatePunishment = () => {
-    let punishment = Math.floor(Math.random() * (punishments.length)) + 0;
+    let punishment = Math.floor(Math.random() * punishments.length) + 0;
     return punishments[punishment];
   };
 
   return (
     <React.Fragment>
       <Divider variant="middle" />
-      {tableGroupIsGenerated ? (
+      {showGeneratePunishment ? (
         <div>
           <Typography variant="h3">{generatePunishment()}</Typography>
           <p>
@@ -49,7 +49,7 @@ const GeneratePunishment = ({ handleButton }) => {
         </div>
       ) : (
         <div>
-          <Typography variant="h3">Arvotaan rangaistusta</Typography>
+          <Typography variant="h3">ARVOTAAN RANGAISTUSTA</Typography>
           <br />
           <CircularProgress color="secondary" size="120px" />
         </div>

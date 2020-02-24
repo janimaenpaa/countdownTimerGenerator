@@ -2,9 +2,13 @@ import React, { useEffect, useState } from "react";
 
 import GeneratePunishment from "./GeneratePunishment";
 
-import { makeStyles } from "@material-ui/core/styles";
-import CircularProgress from "@material-ui/core/CircularProgress";
-import { CardContent, Typography } from "@material-ui/core";
+import {
+  CardContent,
+  Typography,
+  Button,
+  CircularProgress,
+  makeStyles
+} from "@material-ui/core";
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -25,15 +29,25 @@ const Generator = ({
   setIsRunning
 }) => {
   const [isLoading, setIsLoading] = useState(true);
+  const [tableGroupIsGenerated, setTableGroupIsGenerated] = useState(false);
+  const [punishmentGenerated, setPunishmentGenerated] = useState(false);
+  const [tableGroup, setTableGroup] = useState(0);
 
   const classes = useStyles();
 
   useEffect(() => {
     const timer = setTimeout(() => {
       setIsLoading(false);
+      generateRandomTableGroup()
     }, 5000);
     return () => clearTimeout(timer);
   });
+
+  const generateRandomTableGroup = () => {
+    let number = Math.floor(Math.random() * 6) + 1;
+    console.log(number)
+    setTableGroup(number);
+  };
 
   const handleButton = () => {
     setMinutes(originalMinutes);
@@ -42,28 +56,34 @@ const Generator = ({
     setIsRunning(true);
   };
 
-  const generateRandomTableGroup = () => {
-    let number = Math.floor(Math.random() * 6) + 1;
-    return number;
+  const handlePunishmentGeneration = () => {
+    setTableGroupIsGenerated(true);
+    setPunishmentGenerated(true);
   };
 
   return (
     <CardContent>
       {isLoading ? (
         <div className={classes.root}>
-          <Typography variant="h3">Arvotaan pöytäryhmää</Typography>
+          <Typography variant="h3">ARVOTAAN PÖYTÄRYHMÄÄ</Typography>
           <br />
           <CircularProgress color="secondary" size="120px" />
         </div>
       ) : (
-        <React.Fragment>
-          <Typography variant="h3">Pöytäryhmä</Typography>
-          <Typography variant="h3">{generateRandomTableGroup()}</Typography>
+        <div>
+          <Typography variant="h3">PÖYTÄRYHMÄ</Typography>
+          <Typography variant="h2">{tableGroup}</Typography>
           <p>
-            <GeneratePunishment handleButton={handleButton}/>
+            {!punishmentGenerated && (
+              <Button onClick={handlePunishmentGeneration}>
+                ARVO RANGAISTUS
+              </Button>
+            )}
           </p>
-          
-        </React.Fragment>
+          {tableGroupIsGenerated && (
+            <GeneratePunishment handleButton={handleButton} />
+          )}
+        </div>
       )}
     </CardContent>
   );

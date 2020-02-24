@@ -75,7 +75,7 @@ const App = () => {
   useInterval(
     () => {
       // Your custom logic here
-      if (minutes <= 0 && seconds <= 1) {
+      if (minutes <= 0 && seconds <= 0) {
         setIsRunning(false);
         setTimeIsUp(true);
       }
