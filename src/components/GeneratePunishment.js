@@ -19,7 +19,7 @@ const GeneratePunishment = ({ handleButton }) => {
   useEffect(() => {
     const timer = setTimeout(() => {
       setShowGeneratePunishment(true);
-    }, 1000);
+    }, 10000);
     return () => clearTimeout(timer);
   });
 
