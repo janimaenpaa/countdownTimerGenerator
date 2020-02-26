@@ -18,12 +18,12 @@ const useStyles = makeStyles(theme => ({
       marginLeft: theme.spacing(2)
     }
   },
-  avatar: {
-    justifyContent: "center",
-    alignItems: "center",
-    alignContent: "center"
+  timer: {
+    fontSize: "2rem"
   }
 }));
+
+const tableNumbers = [1, 2, 3, 4, 5, 6];
 
 const Generator = ({
   originalMinutes,
@@ -43,7 +43,7 @@ const Generator = ({
   useEffect(() => {
     const timer = setTimeout(() => {
       setIsLoading(false);
-    }, 5000);
+    }, 1000);
     return () => clearTimeout(timer);
   });
 
@@ -52,7 +52,13 @@ const Generator = ({
   }, []);
 
   const generateNumber = () => {
-    const number = Math.floor(Math.random() * 6) + 1;
+    if (tableNumbers.length === 0) {
+      setTableGroup("Ei pöytäryhmiä jäljellä");
+      return;
+    }
+    let numberIndex = Math.floor(Math.random() * tableNumbers.length) + 0;
+    let number = tableNumbers[numberIndex];
+    tableNumbers.splice(numberIndex, 1);
     setTableGroup(number);
   };
 
@@ -60,7 +66,7 @@ const Generator = ({
     setMinutes(originalMinutes);
     setSeconds(originalSeconds);
     setTimeIsUp(false);
-    setIsRunning(true);
+    //setIsRunning(true);
   };
 
   const handlePunishmentGeneration = () => {

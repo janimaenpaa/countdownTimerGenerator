@@ -1,22 +1,42 @@
-import React from "react";
+import React, {useEffect} from "react";
 
+import { makeStyles } from "@material-ui/core/styles";
 import { CardContent } from "@material-ui/core";
 import Typography from "@material-ui/core/Typography";
+import Button from "@material-ui/core/Button"
 
 import "./Timer.css";
 
-const Timer = props => {
-  let minute = props.minutes;
-  let second = props.seconds;
+const useStyles = makeStyles(theme => ({
+  root: {
+    display: "center",
 
-  if (props.minutes < 10) {
-    minute = "0" + props.minutes;
+    "& > * + *": {
+      marginLeft: theme.spacing(2)
+    }
+  },
+  timer: {
+    fontSize: "12rem"
   }
-  if (props.seconds < 10) {
-    second = "0" + props.seconds;
+}));
+
+const Timer = ({minutes, seconds, isRunning, setIsRunning}) => {
+  let minute = minutes;
+  let second = seconds;
+
+  if (minutes < 10) {
+    minute = "0" + minutes;
+  }
+  if (seconds < 10) {
+    second = "0" + seconds;
   }
 
   let time = minute + ":" + second;
+  const classes = useStyles();
+
+  const handleButton = () => {
+    isRunning ? (setIsRunning(false)) : (setIsRunning(true))
+  }
   return (
     <div
       style={{
@@ -26,7 +46,21 @@ const Timer = props => {
       }}
     >
       <CardContent>
-        <Typography variant="h2">{time}</Typography>
+        <Typography variant="h2" className={classes.timer}>
+          {time}
+        </Typography>
+        <p>
+          <Button
+            type="submit"
+            variant="contained"
+            color="secondary"
+            size="large"
+            onClick={handleButton}
+            disableElevation
+          >
+            {isRunning ? "PYSÄYTÄ" : "KÄYNNISTÄ"}
+          </Button>
+        </p>
       </CardContent>
     </div>
   );

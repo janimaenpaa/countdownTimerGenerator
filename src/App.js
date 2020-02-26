@@ -15,13 +15,15 @@ const useStyles = makeStyles({
   root: {
     minWidth: 300,
     width: 800,
-    minHeight: 200,
+    minHeight: 300,
     maxWidth: "100%",
     maxHeight: "100%",
     padding: 20,
+    margin: "auto",
     background: "ffffff",
     display: "flex",
     justifyContent: "center",
+    justifyItems: "center",
     alignItems: "center"
   },
   title: {
@@ -99,7 +101,7 @@ const App = () => {
           direction="column"
           alignItems="center"
           justify="center"
-          style={{ minHeight: "40vh" }}
+          style={{ minHeight: "80vh" }}
         >
           <Grid item xs={12}>
             <img src={headerImage} alt="Randomsitsit" style={{padding: "20px"}}/>
@@ -120,7 +122,7 @@ const App = () => {
                 />
               )}
               {timeIsSet && !timeIsUp && (
-                <Timer minutes={minutes} seconds={seconds} />
+                <Timer minutes={minutes} seconds={seconds} isRunning={isRunning} setIsRunning={setIsRunning} />
               )}
               {timeIsUp && (
                 <Generator

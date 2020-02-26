@@ -19,13 +19,18 @@ const GeneratePunishment = ({ handleButton }) => {
   useEffect(() => {
     const timer = setTimeout(() => {
       setShowGeneratePunishment(true);
-    }, 10000);
+    }, 1000);
     return () => clearTimeout(timer);
   });
 
   const generatePunishment = () => {
-    let punishment = Math.floor(Math.random() * punishments.length) + 0;
-    return punishments[punishment];
+    if (punishments.length === 0) {
+      return "Ei rangaistuksia jäljellä";
+    }
+    let punishmentIndex = Math.floor(Math.random() * punishments.length) + 0;
+    let punishment = punishments[punishmentIndex];
+    punishments.splice(punishmentIndex, 1);
+    return punishment;
   };
 
   return (
@@ -35,7 +40,7 @@ const GeneratePunishment = ({ handleButton }) => {
         <div>
           <Typography variant="h3">RANGAISTUS</Typography>
           <br />
-            <Typography variant="h3">{generatePunishment()}</Typography>
+          <Typography variant="h3">{generatePunishment()}</Typography>
           <p>
             <br />
             <Button

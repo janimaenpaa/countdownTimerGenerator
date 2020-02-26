@@ -10,7 +10,7 @@ const SetTimer = props => {
     event.preventDefault();
     console.log("Aika:", props.minutes + ":" + props.seconds);
     props.setTimeIsSet(true);
-    props.setIsRunning(true);
+    // props.setIsRunning(true);
   };
 
   return (
