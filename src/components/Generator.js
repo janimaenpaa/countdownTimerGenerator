@@ -5,7 +5,7 @@ import GeneratePunishment from "./GeneratePunishment";
 import {
   CardContent,
   Typography,
-  Button,
+  // Button,
   CircularProgress,
   makeStyles
 } from "@material-ui/core";
@@ -34,9 +34,9 @@ const Generator = ({
   setIsRunning
 }) => {
   const [isLoading, setIsLoading] = useState(true);
-  const [tableGroupIsGenerated, setTableGroupIsGenerated] = useState(false);
-  const [punishmentGenerated, setPunishmentGenerated] = useState(false);
   const [tableGroup, setTableGroup] = useState(0);
+  // const [tableGroupIsGenerated, setTableGroupIsGenerated] = useState(false);
+  // const [punishmentGenerated, setPunishmentGenerated] = useState(false);
 
   const classes = useStyles();
 
@@ -69,10 +69,10 @@ const Generator = ({
     //setIsRunning(true);
   };
 
-  const handlePunishmentGeneration = () => {
-    setTableGroupIsGenerated(true);
-    setPunishmentGenerated(true);
-  };
+  // const handlePunishmentGeneration = () => {
+  //   setTableGroupIsGenerated(true);
+  //   setPunishmentGenerated(true);
+  // };
 
   return (
     <CardContent>
@@ -87,20 +87,9 @@ const Generator = ({
           <Typography variant="h3">PÖYTÄRYHMÄ</Typography>
           <Typography variant="h3">{tableGroup}</Typography>
           <p>
-            {!punishmentGenerated && (
-              <Button
-                type="submit"
-                variant="contained"
-                color="secondary"
-                size="large"
-                onClick={handlePunishmentGeneration}
-                disableElevation
-              >
-                ARVO RANGAISTUS
-              </Button>
-            )}
+            
           </p>
-          {tableGroupIsGenerated && (
+          {!isLoading && (
             <GeneratePunishment handleButton={handleButton} />
           )}
         </div>
