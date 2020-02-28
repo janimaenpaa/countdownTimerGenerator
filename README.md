@@ -4,6 +4,10 @@
 
 A React app made for sitsit. User can set a custom time in minutes and seconds and after the time is up, the app generates table number and a punishment for the table group.
 
+### Demo
+
+[Demo](https://sitsigeneraattori.herokuapp.com/)
+
 ## Getting Started
 
 Do these steps to run the app.
